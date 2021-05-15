@@ -1,0 +1,19 @@
+.App{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/Designer's-Stop.png");
+    width: 100%;
+    height: 100%;
+    font-family: 'Playfair Display', serif;
+    color:whitesmoke;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    overflow:scroll;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.App::-webkit-scrollbar {
+    display: none !important;
+  }
+  
