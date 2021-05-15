@@ -1,10 +1,5 @@
 import React from "react";
-import {useState} from "react";
-import {Card,CardHeader,CardContent,CardActions,makeStyles, Box, Button, Typography} from "@material-ui/core";
-import IMG1 from "./IMG/Card1.png";
-import IMG2 from "./IMG/Card2.png";
-import IMG3 from "./IMG/Card3.png";
-
+import {Card,CardHeader,CardContent,makeStyles,Typography} from "@material-ui/core";
 const style = makeStyles((theme)=>({
     card:{
         padding:'3%',
@@ -21,7 +16,6 @@ const style = makeStyles((theme)=>({
 }))
 export const Card1 = () => {
     const classes = style();
-    const [open,setOpen] = useState(false);
     return(
         <>
         <Card raised className={classes.card}>
