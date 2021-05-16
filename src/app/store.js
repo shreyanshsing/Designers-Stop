@@ -1,13 +1,12 @@
-import {configureStore,getDefaultMiddleware} from "@reduxjs/toolkit";
-import registrationReducer from "../services/registration-service/Registration";
+import {configureStore} from "@reduxjs/toolkit";
+import web3Reducer from "../service/web3/web3Reducer";
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
-const store = configureStore({
+export default configureStore({
     reducer:{
-        registration: registrationReducer,
+        web3 : web3Reducer,
     },
     middleware: getDefaultMiddleware({
-        serializableCheck: false
+        serializableCheck : false
       }),
 })
-
-export default store;

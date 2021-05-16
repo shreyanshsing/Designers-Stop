@@ -10,8 +10,8 @@ const Toast=(props)=>{
   const message = props.message;
   const severity = props.severity;
 
-  return(<Snackbar open={props.snackbarView} autoHideDuration={5000} onClose={()=>props.setSnackbarView(false)} anchorOrigin={{vertical:'top',horizontal:'center'}}>
-          <Alert onClose={()=>props.setSnackbarView(false)} severity={severity}>
+  return(<Snackbar open={props.open} autoHideDuration={5000} onClose={()=>props.setOpen(false)} anchorOrigin={{vertical:'top',horizontal:'center'}}>
+          <Alert onClose={()=>props.setOpen(false)} severity={severity}>
             {message}
           </Alert>
         </Snackbar>)

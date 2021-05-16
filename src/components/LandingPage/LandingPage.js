@@ -2,6 +2,7 @@ import React from "react";
 import {Container,makeStyles,Typography,Grid,Divider, Button} from "@material-ui/core";
 import {Card1,Card2,Card3} from "../Card/Card";
 import Footer from "../Footer/Footer";
+import Auth from "../Authentication/Auth";
 
 const styles = makeStyles((theme)=>({
     root:{
@@ -34,6 +35,9 @@ const LandingPage = () => {
                     <Typography variant="h1" className={classes.brand} gutterBottom>dESIGNER's sTOP</Typography>
                     <Divider light classes={{light:classes.light}}/>
                 </Grid>
+                <Grid item sm={6}>
+                    <Auth/>
+                </Grid>
                 <Grid item sm={12} style={{textAlign:'center'}}>
                     <Typography variant="h3" gutterBottom>
                         What do we offer !
@@ -53,7 +57,7 @@ const LandingPage = () => {
                     </Grid>
                 </Grid>
                 <Grid item sm={12} style={{textAlign:'center'}}>
-                    <Button type="button" variant="contained">Try for free</Button>
+                    <Button type="button" variant="contained" color="primary">Try for free</Button>
                 </Grid>
                 <Grid item sm={12}>
                     <Divider light classes={{light:classes.light}}/>

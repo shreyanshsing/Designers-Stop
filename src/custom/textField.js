@@ -2,27 +2,27 @@ import {TextField,withStyles} from "@material-ui/core";
 
 const CustomTextField = withStyles((theme)=>({
     root: {
-        color:"#ff0066",
+        color:theme.palette.primary,
         '& label.Mui-focused': {
-          color: '#ff0066',
+          color: theme.palette.primary,
         },
         '& .MuiInput-underline:after': {
-            color:"#ff0066",
-          borderBottomColor: '#ff0066',
+          color:theme.palette.primary,
+          borderBottomColor: theme.palette.primary,
         },
         '& .MuiOutlinedInput-root': {
-            color:"#ff0066",
+            color:theme.palette.primary,
           '& fieldset': {
-            color:"#ff0066",
-            borderColor: '#ff0066',
+            color:theme.palette.primary,
+            borderColor: theme.palette.primary,
           },
           '&:hover fieldset': {
-            color:"#ff0066",
-            borderColor: '#ff0066',
+            color:theme.palette.primary,
+            borderColor: theme.palette.primary,
           },
           '&.Mui-focused fieldset': {
-            color:"#ff0066",
-            borderColor: '#ff0066',
+            color:theme.palette.primary,
+            borderColor: theme.palette.primary,
           },
         },
       },
