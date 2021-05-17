@@ -20,7 +20,7 @@ const Auctions = () => {
                 {
                     AuctionData.map(item=>
                         <Grid item sm={6} key={item.id}>
-                            <AuctionCard title={item.productName} price={item.startingBid} date={item.auctionDate} subtitle={item.desginer} key={item.id}/>
+                            <AuctionCard title={item.productName} price={item.startingBid} date={item.auctionDate} subtitle={item.desginer} id={item.id}/>
                         </Grid>)
                 }
             </Grid>

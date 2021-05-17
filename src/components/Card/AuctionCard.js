@@ -1,5 +1,6 @@
 import React from "react";
 import {Card,CardActions, CardContent,makeStyles,Typography, Button} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 const style = makeStyles((theme)=>({
     card:{
@@ -15,8 +16,15 @@ const style = makeStyles((theme)=>({
         justifyContent:'center',
     }
 }))
-const AuctionCard = ({title,subtitle,price,date}) => {
+const AuctionCard = ({title,subtitle,price,date,id}) => {
     const classes = style();
+    const history = useHistory();
+
+    const handleParticipate = () => {
+        window.setTimeout(()=>{
+            history.push("/auction/"+id);
+        },2000)
+    }
     return(
         <>
         <Card raised className={classes.card}>
@@ -27,7 +35,7 @@ const AuctionCard = ({title,subtitle,price,date}) => {
                 <Typography variant="body2" gutterBottom>Date Starting - <b>{date}</b></Typography>
             </CardContent>
             <CardActions style={{textAlign:'center'}}>
-                <Button variant="standard" color="primary">Participate</Button>
+                <Button variant="standard" color="primary" onClick={handleParticipate}>Participate</Button>
             </CardActions>
         </Card>
         </>
