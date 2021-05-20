@@ -1,14 +1,6 @@
 import {createMuiTheme} from "@material-ui/core";
 
 const theme = createMuiTheme({
-    palette:{
-        primary:{
-            main:'#cccccc'
-        },
-        secondary:{
-            main:'#ffffff'
-        }
-    },
     typography:{
         fontFamily:"'Playfair Display', serif",
         fontWeight:300
@@ -16,7 +8,7 @@ const theme = createMuiTheme({
     overrides:{
         MuiTypography:{
             body1:{
-                fontWeight:200
+                fontWeight:300
             }
         }
     }

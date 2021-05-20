@@ -29,6 +29,9 @@ const BidArea = () => {
                 <Grid item sm={4}>
                     <Typography variant="body2" gutterBottom color="textSecondary">Highest Bid  : $ 500</Typography>
                 </Grid>
+                <Grid item sm={12}>
+                    <Typography variant="body2" gutterBottom color="textSecondary">Your Current Bid  : $450</Typography>
+                </Grid>
                 <Grid item sm={4}>
                     <Typography variant="h6" color="textSecondary" gutterBottom>Raise bid</Typography>
                 </Grid>

@@ -32,7 +32,7 @@ const LiveAuction = () => {
                             <Typography color="textSecondary" gutterBottom>Created By : <b>Elly Abshak</b></Typography>
                         </Grid>
                         <Grid item sm={3}>
-                            <Typography color="textSecondary" gutterBottom>Date : <b>{new Date().getDate()+"/"+new Date().getDay()+"/"+new Date().getFullYear()}</b></Typography>
+                            <Typography color="textSecondary" gutterBottom>NFT Token ID : <b>#1021</b></Typography>
                             <Typography color="textSecondary" gutterBottom>Status : <b>Live (remaining time - 1 Hr)</b></Typography>
                         </Grid>
                         <Grid item sm={3}>
@@ -40,8 +40,8 @@ const LiveAuction = () => {
                             <Typography color="textSecondary" gutterBottom>Crypto acceptable : <b>ETH</b></Typography>
                         </Grid>
                         <Grid item sm={3}>
-                            <Typography color="textSecondary" gutterBottom>Registered Participants : <b>200</b></Typography>
                             <Typography color="textSecondary" gutterBottom>Active Participants : <b>65</b></Typography>
+                            <Typography color="textSecondary" gutterBottom>Date : <b>{new Date().getDate()+"/"+new Date().getDay()+"/"+new Date().getFullYear()}</b></Typography>
                         </Grid>
                     </Grid>
                 </Grid>

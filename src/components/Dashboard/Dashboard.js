@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <Grid item sm={12}>
                     <Header/>
                 </Grid>
-                <Grid item sm={3}>
+                <Grid item sm={12}>
                     <Auctions/>
                     <Divider orientation="vertical"/>
                 </Grid>

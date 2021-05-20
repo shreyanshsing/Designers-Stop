@@ -13,7 +13,6 @@ const style = makeStyles((theme)=>({
         height:'auto',
         padding:'3%',
         overflowY:'hidden',
-        backgroundImage:`linear-gradient(40deg,rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`,
         borderRadius:'20px',
     },
     form:{
@@ -38,14 +37,27 @@ const Signin = ({open,setOpen}) => {
             Registration.abi,
             deployedNetwork && deployedNetwork.address,
         );
-        instance && instance.methods.signin(address).send({from:config.web3.accounts[0]})
-        .then(res=>{
+        instance && await instance.methods.signin(address).send({from:config.web3.accounts[0]})
+        .then(async res=>{
             setMessage("Login successful , redirecting you to dashboard");
             setSeverity("success");
             setToastView(true);
-            window.setTimeout(()=>{
-                history.push('/dashboard');
-            },3000)
+            await instance.methods.User_Record(address).call({from:config.web3.accounts[0]})
+            .then(res=> {
+                const user = {
+                    address : res.user_addr,
+                    first_name : res.first_name,
+                    user_type : res.user_type,
+                    lastCheckinTime : res.lastCheckinTime,
+                    profile : res.profile
+                }
+                console.log(res)
+                localStorage.setItem('user',JSON.stringify(user));
+            })
+            .catch(err=>console.log(err))
+            window.setTimeout(async()=>{
+                history.push('/dashboard')
+            },2000)
         })
         .catch(err=>{
             setMessage(err.message);

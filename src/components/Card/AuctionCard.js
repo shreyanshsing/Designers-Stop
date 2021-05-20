@@ -5,7 +5,6 @@ import {useHistory} from "react-router-dom";
 const style = makeStyles((theme)=>({
     card:{
         padding:'1%',
-        backgroundImage:`linear-gradient(40deg,rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`,
         borderRadius:'10px',
     },
     cardContent:{
@@ -28,7 +27,7 @@ const AuctionCard = ({title,subtitle,price,date,id}) => {
     return(
         <>
         <Card raised className={classes.card}>
-            <CardContent className={classes.cardContent} style={{color:'#404040'}}>
+            <CardContent className={classes.cardContent}>
                 <Typography variant="body1" gutterBottom>{title}</Typography>
                 <Typography variant="body2" gutterBottom>{`by ${subtitle}`}</Typography>
                 <Typography variant="body2" gutterBottom>Base Price - <b>{price}</b></Typography>

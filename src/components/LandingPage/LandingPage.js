@@ -10,19 +10,22 @@ const styles = makeStyles((theme)=>({
         height:'100%',
         overflow:'scroll',
         overflowWrap:'break-word',
-        padding:"5%",
+        padding:"3%",
         overflowX:'hidden'
     },
     brand:{
         fontWeight:1000,
-        color:'#cccccc',
-        letterSpacing:'5px'
+        color:'rgba(0,0,0,0.5)',
+        paddingLeft:'1%',
+        backgroundImage:'linear-gradient(180deg,#FF0018,#FFA52C,#FFFF41,#008018,#0000F9, #86007D)',
+        letterSpacing:'5px',
+        borderRadius:'20px 20px 400px 20px',
+        boxShadow:'10px 10px 15px lightgrey'
     },
     light:{
         marginLeft:'0%',
         margin:'2%',
-        color:'whitesmoke',
-        background:'whitesmoke'
+        padding:'1px'
     }
 }))
 

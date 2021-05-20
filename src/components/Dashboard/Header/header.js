@@ -1,7 +1,10 @@
-import React from "react";
-import {AppBar,Toolbar,makeStyles,Grid,Typography,IconButton,Avatar,Button,TextField,InputAdornment} from "@material-ui/core";
+import React ,{useState,useEffect} from "react";
+import {AppBar,Toolbar,makeStyles,Grid,IconButton,Avatar,TextField,InputAdornment} from "@material-ui/core";
 import img from "./logo.png";
 import SearchIcon from '@material-ui/icons/Search';
+import Sidebar from "../../Sidebar/Sidebar";
+import {selectorUserProfile,setProfile} from "../../../service/userProfile/userProfile.slice";
+import {useSelector,useDispatch} from "react-redux";
 
 const styles = makeStyles(theme=>({
     appbar:{
@@ -36,21 +39,22 @@ const styles = makeStyles(theme=>({
 
 const Header = () => {
     const classes = styles();
+    const [open,setOpen] = useState(false);
+    const profile = useSelector(selectorUserProfile);
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const user = JSON.parse(localStorage.getItem('user'));
+        dispatch(setProfile("https://ipfs.io/ipfs/"+user.profile))
+    },[dispatch])
+    
     return(
+        <>
         <AppBar elevation={5} color="secondary" position="static" className={classes.appbar}>
             <Toolbar className={classes.toolbar}>
                 <Grid container spacing={3}>
                     <Grid item sm={1}>
                         <Avatar alt="logo" src={img} className={classes.large}/>
-                    </Grid>
-                    <Grid item sm={1} style={{paddingTop:"1.5%"}}>
-                        <Button variant="text" type="button" color="primary"><Typography variant="body1">Women</Typography></Button>
-                    </Grid>
-                    <Grid item sm={1} style={{paddingTop:"1.5%"}}>
-                        <Button variant="text" type="button" color="primary"><Typography variant="body1">Men</Typography></Button>
-                    </Grid>
-                    <Grid item sm={1} style={{paddingTop:"1.5%"}}>
-                        <Button variant="text" type="button" color="primary"><Typography variant="body1">Kids</Typography></Button>
                     </Grid>
                     <Grid item sm={3}>
                         <TextField
@@ -70,11 +74,15 @@ const Header = () => {
                         />
                     </Grid>
                 </Grid>
-                <IconButton className={classes.profile}>
-                    <Avatar className={classes.medium} alt="P"/>
+                <IconButton onClick={()=>setOpen(true)} className={classes.profile}>
+                    <Avatar className={classes.medium} src={`${profile.profile}`} alt="P"/>
                 </IconButton>
             </Toolbar>
         </AppBar>
+        {
+            open ? <Sidebar open={open} setOpen={setOpen}/> : null
+        }
+        </>
     )
 }
 

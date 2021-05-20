@@ -6,7 +6,7 @@ import CustomRadio from "../../../custom/radio";
 import Registration from "../../../contracts/Registration.json";
 import {web3Selector} from "../../../service/web3/web3Reducer";
 import {useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
+import ipfs from "../../../service/IPFS/ipfs";
 
 const style = makeStyles((theme)=>({
     paper:{
@@ -14,7 +14,6 @@ const style = makeStyles((theme)=>({
         height:'auto',
         padding:'3%',
         overflowY:'hidden',
-        backgroundImage:`linear-gradient(40deg,rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`,
         borderRadius:'20px',
     },
     form:{
@@ -25,18 +24,51 @@ const style = makeStyles((theme)=>({
 const Signup = ({open,setOpen}) => {
     const classes = style();
     const config = useSelector(web3Selector);
-    const history = useHistory();
     const [name,setName] = useState("");
     const [address,setAddress] = useState("");
     const [userType,setUserType] = useState("");
     const [toastView,setToastView] = useState(false);
     const [severity,setSeverity] = useState("");
     const [message,setMessage] = useState("");
+    const [buffer,setBuffer] = useState("");
+    const [imgHash,setImgHash] = useState("");
 
     const handleRadioValue = (e) => {
         const curr_value = e.target.value;
         setUserType(curr_value);
 
+    }
+
+    const handleImg = (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+        const file = event.target.files[0]
+        let reader = new window.FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onloadend = () => convertToBuffer(reader)    
+      };
+    const convertToBuffer = async(reader) => {
+      //file is converted to a buffer for upload to IPFS
+        const new_buffer = await Buffer.from(reader.result);
+      //set this buffer -using es6 syntax
+        setBuffer(new_buffer);
+    };
+
+    const handleImgUpload = async(e) => {
+        e.preventDefault();
+        await ipfs.add(buffer)
+        .then(res=> {
+            setMessage("Image uploaded successfully");
+            setSeverity("success");
+            setToastView(true);
+            setImgHash(res[0].hash);
+        })
+        .catch(err=>{
+            console.log(err);
+            setMessage(err.response.data.message);
+            setSeverity("error");
+            setToastView(true);
+        })
     }
 
     const handleSubmit = async(e) => {
@@ -46,14 +78,17 @@ const Signup = ({open,setOpen}) => {
             Registration.abi,
             deployedNetwork && deployedNetwork.address,
         );
-        instance && instance.methods.register(address,name,userType).send({from:config.web3.accounts[0]})
+        instance && instance.methods.register(address,name,userType,imgHash).send(
+            {
+                from:config.web3.accounts[0],
+                gasPrice: 8000000000,
+                gas: 4700000,
+                gasLimit:60000
+            })
         .then(res=>{
-            setMessage("Registration successful , redirecting you to dashboard");
+            setMessage("Registration successful , login to continue");
             setSeverity("success");
             setToastView(true);
-            window.setTimeout(()=>{
-                history.push('/dashboard');
-            })
         })
         .catch(err=>{
             setMessage(err.message);
@@ -87,6 +122,11 @@ const Signup = ({open,setOpen}) => {
                                 <FormControlLabel value="buyer" control={<CustomRadio />} label="Buyer" />
                             </RadioGroup>
                         </FormControl>
+                        </Grid>
+                        <Grid item sm={12}>
+                            <Typography variant="body1" color="textPrimary" gutterBottom>Upload Profile - </Typography>
+                            <CustomTextField type="file" onChange={(e)=>handleImg(e)} variant="outlined" margin="dense" fullWidth required/>
+                            <Button type="button" variant="contained" color="primary" onClick={handleImgUpload}>Upload</Button>
                         </Grid>
                         <Grid item sm={12} style={{textAlign:'center'}}>
                             <Button type="reset" variant="contained" color="primary">Reset</Button>&nbsp; / &nbsp;

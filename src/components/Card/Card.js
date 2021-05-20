@@ -3,8 +3,10 @@ import {Card,CardHeader,CardContent,makeStyles,Typography} from "@material-ui/co
 const style = makeStyles((theme)=>({
     card:{
         padding:'3%',
-        backgroundImage:`linear-gradient(40deg,rgba(0, 0, 0,0.2), rgba(0, 0, 0, 0.5))`,
         borderRadius:'20px',
+        '&:hover':{
+            boxShadow:'10px 10px 15px lightgrey'
+        }
     },
     cardContent:{
         textAlign:'justify'
@@ -25,9 +27,9 @@ export const Card1 = () => {
             />
             <CardContent className={classes.cardContent} style={{color:'#404040'}}>
                 <Typography variant="body1" gutterBottom>
-                    This platform provides you to experince a new trend of shopping with us. 
-                    This revolutionary technonolgy makes it possible to reduce middle man cost.
-                    Now pay what's resonable not extra as you all have done till yet.   
+                    This platform provides you to experince  a new trend of shopping with us. 
+                    This revolutionary  technonolgy makes it possible to reduce middle man cost.
+                    Now pay what's resonable not extra as you all have done till yet .   
                 </Typography>
             </CardContent>
         </Card>

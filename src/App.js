@@ -7,6 +7,7 @@ import {setWeb3} from "./service/web3/web3Reducer";
 import {useDispatch} from "react-redux";
 import Dashboard from "./components/Dashboard/Dashboard";
 import LiveAuction from "./components/Dashboard/Auction/LIveAuction";
+import UserDashboard from "./components/UserDashboard/UserDashboard";
 
 function App(){
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App(){
           <Route exact path="/" component={LandingPage}/>
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/auction/:id" component={LiveAuction}/>
+          <Route path="/user-dashboard" component={UserDashboard}/>
         </Switch>
       </Router>
     </div>
