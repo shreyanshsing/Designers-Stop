@@ -3,7 +3,7 @@ import {makeStyles,Typography,Dialog,DialogTitle,DialogContent,Button,Grid,FormC
 import CustomTextField from "../../../custom/textField";
 import Toast from "../../../custom/toast";
 import CustomRadio from "../../../custom/radio";
-import Registration from "../../../contracts/Registration.json";
+import Product from "../../../contracts/Product.json";
 import {web3Selector} from "../../../service/web3/web3Reducer";
 import {useSelector} from "react-redux";
 import ipfs from "../../../service/IPFS/ipfs";
@@ -73,11 +73,13 @@ const Signup = ({open,setOpen}) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const deployedNetwork = Registration.networks[config.web3.networkId];
+        const deployedNetwork = Product.networks[config.web3.networkId];
         const instance = new config.web3.web3.eth.Contract(
-            Registration.abi,
+            Product.abi,
             deployedNetwork && deployedNetwork.address,
         );
+
+        console.log(address,name,userType,imgHash)
         instance && instance.methods.register(address,name,userType,imgHash).send(
             {
                 from:config.web3.accounts[0],

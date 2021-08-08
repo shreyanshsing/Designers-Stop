@@ -2,7 +2,7 @@ import React , {useState} from "react";
 import {makeStyles,Typography,Dialog,DialogTitle,DialogContent,Button,Grid} from "@material-ui/core";
 import CustomTextField from "../../../custom/textField";
 import Toast from "../../../custom/toast";
-import Registration from "../../../contracts/Registration.json";
+import Product from "../../../contracts/Product.json";
 import {web3Selector} from "../../../service/web3/web3Reducer";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
@@ -32,9 +32,9 @@ const Signin = ({open,setOpen}) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const deployedNetwork = Registration.networks[config.web3.networkId];
+        const deployedNetwork = Product.networks[config.web3.networkId];
         const instance = new config.web3.web3.eth.Contract(
-            Registration.abi,
+            Product.abi,
             deployedNetwork && deployedNetwork.address,
         );
         instance && await instance.methods.signin(address).send({from:config.web3.accounts[0]})

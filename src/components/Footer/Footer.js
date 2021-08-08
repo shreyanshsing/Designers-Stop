@@ -10,6 +10,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 const styles = makeStyles((theme)=>({
     root:{
         padding:'2%',
+        background:'linear-gradient(to right,rgba(0,0,0,0.1),rgba(0,0,0,0.1))'
     }
 }))
 
@@ -17,9 +18,9 @@ const Footer = () => {
     const classes = styles();
     return(
         <Container maxWidth="xl" className={classes.root}>
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
                 <Grid item sm={12}>
-                    <Typography variant="body1" gutterBottom><BusinessIcon fontSize="large"/> : 29 P BLOCK YASHODA NAGAR, KANPUR , UTTAR PRADESH. (<RoomIcon/>locate us on map)</Typography>
+                    <Typography variant="body1" gutterBottom><BusinessIcon fontSize="large"/> : 29 P BLOCK YASHODA NAGAR, KANPUR , UTTAR PRADESH. (<RoomIcon/><a href="#home">locate us on map</a>)</Typography>
                     <Typography variant="subtitle1" gutterBottom>Services only availble in India.</Typography>
                 </Grid>
                 <Grid item sm={12}>

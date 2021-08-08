@@ -12,9 +12,13 @@ const styles = makeStyles(theme=>({
     root:{
         width:'fit-content',
         padding:'1%',
-        background:'rgba(255,255,255,0.1)',
-        borderRadius:'10px'
+        borderRadius:'10px',
+        background : theme.palette.info.main
     },
+    content:{
+        background : "whitesmoke",
+        borderRadius:'10px',
+    }
 }))
 
 const RegisterProduct = () => {
@@ -73,7 +77,6 @@ const RegisterProduct = () => {
             deployedNetwork && deployedNetwork.address,
         );
         const data = imgHash.map(e => e.hash);
-        console.log(data)
         instance && instance.methods.mintItem(productName,productDesg,data,address).send(
             {
                 from:web3.web3.accounts[0],
@@ -91,6 +94,13 @@ const RegisterProduct = () => {
                 setSeverity("error");
                 setToastView(true);
             })
+            instance && instance.methods.getItems("0x59C81a996C028C8445CAe519D192B309404F0C0B").call()
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err =>{
+                console.log(err)
+            })
     }
 
     return(
@@ -99,7 +109,7 @@ const RegisterProduct = () => {
             <CardHeader
                 title="Register New Product"
                 subheader="fill these details"/>
-            <CardContent>
+            <CardContent className={classes.content}>
                 <form>
                     <Grid container spacing={3}>
                         <Grid item sm={4}>
@@ -127,12 +137,12 @@ const RegisterProduct = () => {
                                 variant="outlined"
                                 margin="dense"
                                 fullWidth
-                                label="Crypto Address"
+                                label="your crypto address"
                                 value={address}
                                 onChange={e=>setAddress(e.target.value)}
                             />
                         </Grid>
-                        <Grid item sm={12}>
+                        <Grid item sm={12} style={{display:'flex',alignItems:'center'}}>
                             <Typography variant="body1" color="textSecondary" gutterBottom>Upload Images : </Typography>
                             <TextField
                                 type="file"

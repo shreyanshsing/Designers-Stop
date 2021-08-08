@@ -1,31 +1,27 @@
 import React from "react";
-import {Container,makeStyles,Typography,Grid,Divider, Button} from "@material-ui/core";
-import {Card1,Card2,Card3} from "../Card/Card";
+import {Container,makeStyles,Typography,Grid} from "@material-ui/core";
 import Footer from "../Footer/Footer";
-import Auth from "../Authentication/Auth";
+import Header from "../Header/Header";
+import {ReactComponent as Svg} from "./svg.svg";
+import Img from "./svg.png";
 
 const styles = makeStyles((theme)=>({
     root:{
         width:'100%',
         height:'100%',
-        overflow:'scroll',
+        overflow:'auto',
         overflowWrap:'break-word',
-        padding:"3%",
-        overflowX:'hidden'
+        padding:"1.5rem",
     },
-    brand:{
-        fontWeight:1000,
-        color:'rgba(0,0,0,0.5)',
-        paddingLeft:'1%',
-        backgroundImage:'linear-gradient(180deg,#FF0018,#FFA52C,#FFFF41,#008018,#0000F9, #86007D)',
-        letterSpacing:'5px',
-        borderRadius:'20px 20px 400px 20px',
-        boxShadow:'10px 10px 15px lightgrey'
+    content:{
+        marginTop:'3rem',
+        fontWeight:500,
+        padding:'1rem',
     },
-    light:{
-        marginLeft:'0%',
-        margin:'2%',
-        padding:'1px'
+    flex:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center'
     }
 }))
 
@@ -33,39 +29,36 @@ const LandingPage = () => {
     const classes = styles();
     return(
         <Container maxWidth="xl" className={classes.root}>
-            <Grid container spacing={4}>
-                <Grid item sm={6}>
-                    <Typography variant="h1" className={classes.brand} gutterBottom>dESIGNER's sTOP</Typography>
-                    <Divider light classes={{light:classes.light}}/>
-                </Grid>
-                <Grid item sm={6}>
-                    <Auth/>
-                </Grid>
-                <Grid item sm={12} style={{textAlign:'center'}}>
-                    <Typography variant="h3" gutterBottom>
-                        What do we offer !
-                    </Typography>
-                </Grid>
+            <Grid container spacing={3}>
                 <Grid item sm={12}>
-                    <Grid container spacing={3} direction="row" justify="center" alignItems="center">
-                        <Grid item sm={4}>
-                            <Card1/>
+                    <Header/>
+                </Grid>
+                <Grid item sm={12} className={classes.content}>
+                    <Grid container spacing={3}>
+                        <Grid item sm={12} className={classes.flex}>
+                            <Typography variant="h5" gutterBottom>
+                                Welcome to new experience of auctions!
+                            </Typography>
                         </Grid>
-                        <Grid item sm={4}>
-                            <Card2/>
+                        <Grid item sm={4} className={classes.flex}>
+                            <Svg width={250} height={250} />
+                            <Typography variant="h6" gutterBottom>
+                                Get amazing deals, like never before. Easy to use platform.
+                            </Typography>
                         </Grid>
-                        <Grid item sm={4}>
-                            <Card3/>
+                        <Grid item sm={4} className={classes.flex}>
+                            <img width={300} height={300} src={process.env.PUBLIC_URL + "/designer's stop.gif"} alt="gif"/>
+                        </Grid>
+                        <Grid item sm={4} className={classes.flex}>
+                            <img src={Img} alt="dvg" width={100} height={100} />
+                            <Typography variant="h6" gutterBottom>
+                                No need to pay us, no middleman fees, deal direct with your buyer/ seller
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item sm={12} style={{textAlign:'center'}}>
-                    <Button type="button" variant="contained" color="primary">Try for free</Button>
-                </Grid>
                 <Grid item sm={12}>
-                    <Divider light classes={{light:classes.light}}/>
                     <Footer/>
-                    <Divider light classes={{light:classes.light}}/>
                 </Grid>
             </Grid>
         </Container>

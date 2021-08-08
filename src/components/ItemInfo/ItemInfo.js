@@ -1,7 +1,5 @@
 import React from "react";
 import {Container, Grid,makeStyles,Typography} from "@material-ui/core";
-import img2 from "../Card/IMG/Card2.png";
-import img3 from "../Card/IMG/Card3.png";
 import {Carousel} from "react-bootstrap";
 
 const styles = makeStyles(theme=>({
@@ -28,14 +26,12 @@ const ItemInfo = () => {
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src={img2}
                             alt="Second slide"
                             />
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                             className="d-block w-100"
-                            src={img3}
                             alt="Third slide"
                             />
                         </Carousel.Item>

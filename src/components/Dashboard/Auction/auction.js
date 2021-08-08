@@ -5,7 +5,7 @@ import {AuctionData} from "./Data";
 
 const styles = makeStyles(theme=>({
     root:{
-        padding:'5%',
+        padding:'2%',
     }
 }))
 
@@ -15,7 +15,7 @@ const Auctions = () => {
         <Container maxWidth="xl" className={classes.root}>
             <Grid container spacing={1}>
                 <Grid item sm={12} style={{textAlign:'center'}}>
-                    <Typography variant="h6" color="textSecondary" gutterBottom>Active Auctions</Typography>
+                    <Typography variant="h5" gutterBottom>Active Auctions</Typography>
                 </Grid>
                 {
                     AuctionData.map(item=>

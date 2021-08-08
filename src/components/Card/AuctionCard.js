@@ -4,11 +4,14 @@ import {useHistory} from "react-router-dom";
 
 const style = makeStyles((theme)=>({
     card:{
-        padding:'1%',
+        padding:'1rem',
         borderRadius:'10px',
+        background:theme.palette.info.main
     },
     cardContent:{
-        textAlign:'justify'
+        textAlign:'justify',
+        background:"whitesmoke",
+        borderRadius:'10px',
     },
     cardActions:{
         alignItems:'center',
@@ -33,8 +36,8 @@ const AuctionCard = ({title,subtitle,price,date,id}) => {
                 <Typography variant="body2" gutterBottom>Base Price - <b>{price}</b></Typography>
                 <Typography variant="body2" gutterBottom>Date Starting - <b>{date}</b></Typography>
             </CardContent>
-            <CardActions style={{textAlign:'center'}}>
-                <Button variant="standard" color="primary" onClick={handleParticipate}>Participate</Button>
+            <CardActions className={classes.cardActions}>
+                <Button variant="contained" color="secondary" size="small" onClick={handleParticipate}>Participate</Button>
             </CardActions>
         </Card>
         </>
